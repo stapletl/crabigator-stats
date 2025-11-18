@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { DashboardDock } from "@/components/dashboard-dock";
 
 export const metadata: Metadata = {
   title: "Crabigator Stats - WaniKani Statistics Dashboard",
@@ -23,6 +24,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <DashboardDock />
         </ThemeProvider>
         <Toaster />
       </body>

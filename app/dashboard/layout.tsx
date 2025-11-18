@@ -10,10 +10,5 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <DashboardDock />
-      <div>{children}</div>
-    </>
-  );
+  return <div>{children}</div>;
 }
