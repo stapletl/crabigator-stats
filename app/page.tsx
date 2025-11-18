@@ -4,14 +4,20 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import { LineShadowText } from "@/components/magic-ui/line-shadow-text";
-import { DemoCarousel } from "@/components/demo-carousel";
-import { Button } from "@/components/ui/button";
+import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { validateApiKey } from "@/lib/wanikani/api";
 import { useAppStore } from "@/stores";
+import { Button } from "@/components/ui/button";
+import { StoragePreferenceSelect } from "@/components/storage-preference-select";
 
 export default function Home() {
   const router = useRouter();
@@ -19,7 +25,9 @@ export default function Home() {
 
   const [apiKeyInput, setApiKeyInput] = useState("");
   const [showApiKey, setShowApiKey] = useState(false);
-  const [storagePreference, setStoragePreference] = useState<"session" | "local">("session");
+  const [storagePreference, setStoragePreference] = useState<
+    "session" | "local"
+  >("session");
   const [isValidating, setIsValidatingLocal] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,7 +58,8 @@ export default function Home() {
         setUser(result.user);
 
         // Update localStorage/sessionStorage based on preference
-        const storage = storagePreference === "local" ? localStorage : sessionStorage;
+        const storage =
+          storagePreference === "local" ? localStorage : sessionStorage;
         storage.setItem("crabigator-api-key", apiKeyInput.trim());
         storage.setItem("crabigator-storage-preference", storagePreference);
 
@@ -70,21 +79,17 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-4">
       <main className="flex flex-col items-center justify-center gap-8 text-center w-full max-w-4xl">
         {/* Hero Section */}
         <div className="space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
-            Crabigator{" "}
-            <LineShadowText
-              text="Stats"
-              className="text-purple-600 dark:text-purple-400"
-              shadowClassName="text-purple-600/50 dark:text-purple-400/50"
-            />
+            Crabigator <LineShadowText>Stats</LineShadowText>
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl">
-            A comprehensive statistics dashboard for WaniKani users.
-            Track your progress, analyze your learning patterns, and visualize your journey to Japanese mastery.
+            A comprehensive statistics dashboard for WaniKani users. Track your
+            progress, analyze your learning patterns, and visualize your journey
+            to Japanese mastery.
           </p>
         </div>
 
@@ -124,6 +129,7 @@ export default function Home() {
                     )}
                   </button>
                 </div>
+
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   You can find your API key in your{" "}
                   <a
@@ -139,37 +145,12 @@ export default function Home() {
 
               {/* Storage Preference */}
               <div className="space-y-3">
-                <Label>Storage Preference</Label>
-                <div className="flex gap-4">
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="storage"
-                      value="session"
-                      checked={storagePreference === "session"}
-                      onChange={(e) => setStoragePreference(e.target.value as "session")}
-                      className="w-4 h-4 text-purple-600 focus:ring-purple-500"
-                      disabled={isValidating}
-                    />
-                    <span className="text-sm text-slate-700 dark:text-slate-300">
-                      Session only
-                    </span>
-                  </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="storage"
-                      value="local"
-                      checked={storagePreference === "local"}
-                      onChange={(e) => setStoragePreference(e.target.value as "local")}
-                      className="w-4 h-4 text-purple-600 focus:ring-purple-500"
-                      disabled={isValidating}
-                    />
-                    <span className="text-sm text-slate-700 dark:text-slate-300">
-                      Remember me
-                    </span>
-                  </label>
-                </div>
+                <Label>Storage Preference</Label>{" "}
+                <StoragePreferenceSelect
+                  value={storagePreference}
+                  onChange={setStoragePreference}
+                  disabled={isValidating}
+                />
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   {storagePreference === "session"
                     ? "Your API key will be stored only for this session"
@@ -178,11 +159,7 @@ export default function Home() {
               </div>
 
               {/* Submit Button */}
-              <Button
-                type="submit"
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white"
-                disabled={isValidating}
-              >
+              <Button type="submit" className="w-full" disabled={isValidating}>
                 {isValidating ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -197,17 +174,17 @@ export default function Home() {
         </Card>
 
         {/* Demo Carousel */}
-        <div className="w-full">
+        {/* <div className="w-full">
           <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
             Preview of your statistics dashboard:
           </p>
           <DemoCarousel />
-        </div>
+        </div> */}
 
         {/* Footer */}
         <p className="text-xs text-slate-500 dark:text-slate-500">
-          This app requires a full WaniKani subscription (Level 60 access).
-          Not affiliated with WaniKani.
+          This app requires a full WaniKani subscription (Level 60 access). Not
+          affiliated with WaniKani.
         </p>
       </main>
     </div>
