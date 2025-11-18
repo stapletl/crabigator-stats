@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Dock, DockIcon } from "@/components/ui/dock";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { AnimatedThemeToggler } from "./ui/animted-theme-toggler";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -36,7 +37,7 @@ export function DashboardDock() {
         </DockIcon>
         <Separator orientation="vertical" className="h-full" />
         <DockIcon>
-          <ThemeSwitcher />
+          <AnimatedThemeToggler />
         </DockIcon>
       </Dock>
     </div>
