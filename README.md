@@ -144,6 +144,28 @@ npm run lint
 npm run type-check
 ```
 
+### UI Development Guidelines
+
+**Use shadcn/ui Components:**
+
+Whenever possible, use shadcn/ui components instead of inline styling or custom styled divs. This ensures:
+- **Consistent theming**: Components automatically adapt to light/dark mode
+- **Unified design language**: Consistent spacing, colors, and typography
+- **Easier maintenance**: Theme changes propagate throughout the app
+- **Accessibility**: Built-in ARIA attributes and keyboard navigation
+
+**Examples:**
+- Use `<Button>` instead of styled `<button>` elements
+- Use `<Card>`, `<CardHeader>`, `<CardContent>` for containers instead of custom divs
+- Use `<Badge>` for labels and status indicators
+- Use `<Separator>` instead of custom horizontal rules
+- Use shadcn color utilities (`text-primary`, `bg-muted`, etc.) instead of arbitrary colors
+
+Available components can be found at [shadcn/ui](https://ui.shadcn.com/) and added via:
+```bash
+npx shadcn@latest add [component-name]
+```
+
 ## Environment Variables
 
 No environment variables required - API token is provided by the user at runtime.
