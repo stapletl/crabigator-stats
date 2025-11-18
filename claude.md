@@ -282,6 +282,31 @@ npm install zustand recharts idb
 
 ## UI/UX Guidelines
 
+**Component Usage - IMPORTANT:**
+
+**ALWAYS use shadcn/ui components instead of inline styling or custom styled elements.** This is critical for:
+- **Consistent theming**: All components automatically adapt to light/dark mode changes
+- **Design consistency**: Unified spacing, colors, typography, and visual language
+- **Maintainability**: Theme updates propagate automatically throughout the entire app
+- **Accessibility**: Built-in ARIA attributes, focus management, and keyboard navigation
+
+**Best Practices:**
+- Use `<Button variant="...">` instead of styled `<button>` with inline styles or custom classes
+- Use `<Card>`, `<CardHeader>`, `<CardTitle>`, `<CardDescription>`, `<CardContent>` for all container layouts
+- Use `<Badge variant="...">` for labels, tags, and status indicators
+- Use `<Separator>` instead of `<hr>` or custom dividers
+- Use shadcn color utilities (`text-primary`, `text-muted-foreground`, `bg-muted`, `bg-card`, etc.) instead of arbitrary Tailwind colors
+- Use `<Skeleton>` for loading states
+- Use `<Alert>` and `<AlertDescription>` for important messages
+- Use `<Table>`, `<TableHeader>`, `<TableBody>`, `<TableRow>`, `<TableCell>` for tabular data
+
+**Adding new components:**
+```bash
+npx shadcn@latest add [component-name]
+```
+
+Browse available components at https://ui.shadcn.com/
+
 **Loading States:**
 - Full-page skeleton on initial load
 - Subtle loading bar on refresh
