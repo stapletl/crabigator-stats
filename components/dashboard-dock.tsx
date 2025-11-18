@@ -1,20 +1,9 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Dock, DockIcon } from "@/components/ui/dock";
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { AnimatedThemeToggler } from "./ui/animted-theme-toggler";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
