@@ -14,6 +14,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Dock, DockIcon } from "@/components/ui/dock";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { AnimatedThemeToggler } from "./ui/animted-theme-toggler";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -32,6 +34,10 @@ export function DashboardDock() {
         </DockIcon>
         <DockIcon>
           <Icons.whatsapp className="size-6" />
+        </DockIcon>
+        <Separator orientation="vertical" className="h-full" />
+        <DockIcon>
+          <AnimatedThemeToggler />
         </DockIcon>
       </Dock>
     </div>

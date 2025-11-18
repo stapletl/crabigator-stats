@@ -13,7 +13,7 @@ export default function DashboardLayout({
   return (
     <>
       <DashboardDock />
-      <div>{children}</div>;
+      <div>{children}</div>
     </>
   );
 }
